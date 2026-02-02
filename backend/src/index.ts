@@ -7,11 +7,15 @@ import { auth, login } from './simulation/auth.js'
 const app = express()
 app.use(
   cors({
-    origin: 'https://map-tracker-eta.vercel.app',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   })
 )
+
+app.options('*', cors())
+
 app.use(express.json())
 
 app.get('/health', (_, res) => res.send('ok'))
