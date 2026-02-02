@@ -5,7 +5,13 @@ import { startWorld } from './simulation/world.js'
 import { auth, login } from './simulation/auth.js'
 
 const app = express()
-app.use(cors())
+app.use(
+  cors({
+    origin: 'https://map-tracker-eta.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+)
 app.use(express.json())
 
 app.get('/health', (_, res) => res.send('ok'))
